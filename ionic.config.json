@@ -1,0 +1,8 @@
+{
+  "name": "clinica",
+  "app_id": "0845bc96",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
