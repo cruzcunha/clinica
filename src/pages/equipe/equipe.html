@@ -1,0 +1,50 @@
+<!--
+  Generated template for the EquipePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Equipe  
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="dismiss()">
+                <ion-icon name="md-close"></ion-icon>
+            </button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content padding>
+      <ion-searchbar
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="onInput($event)"
+        #membroSearchbar >
+      </ion-searchbar> 
+      <ion-list>
+        <ion-item *ngFor="let item of items">
+          <button ion-item (click)="addItem(item)">
+            {{item.nome}}
+          </button>
+        </ion-item>
+      </ion-list>
+      <ion-item-divider>
+         Selecionados:
+      </ion-item-divider>
+      <ion-list >
+        <ion-item *ngFor="let membro of membrosSelected">
+          {{membro.nome}} 
+            <button ion-button color="light" (click)="removeItem(membro)" item-end>
+              <ion-icon name="md-trash"></ion-icon>          
+            </button>
+            <ion-icon 
+                    (click)="toggleFavoriteItem(membro)" item-start
+                    [color]="membro.favorito ? 'bright':'light'"
+                    [name]="membro.favorito ?  'md-star': 'md-star-outline' ">
+            </ion-icon>
+        </ion-item>
+      </ion-list>
+      <button ion-button block (click)="save()">Salvar</button>
+</ion-content>

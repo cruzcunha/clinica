@@ -1,0 +1,103 @@
+<!--
+  Generated template for the EditProcedimentoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>edit-procedimento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>    
+    <ion-item>
+      <ion-label stacked>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" name="data" min="2017" max="2020-12-31" [(ngModel)]="model.data"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Local</ion-label>
+      <ion-input type="text" name="local" [(ngModel)]="model.local" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Paciente</ion-label>
+      <ion-input type="text" name="nomePaciente" [(ngModel)]="model.nomePaciente" ></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Tipo de Procedimento</ion-label>
+        <ion-select [(ngModel)]="model.tipo" interface="popover">
+            <ion-option value="plano">Plano de Saúde</ion-option>
+            <ion-option value="particular">Particular</ion-option>
+            <ion-option value="cortesia">Cortesia</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Plano</ion-label>
+      <ion-input type="text" name="plano" [(ngModel)]="model.plano" disabled="{{model.tipo !='plano'}}"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Função:</ion-label>
+        <ion-select [(ngModel)]="model.funcao" interface="popover">
+          <ion-option value="Médico Principal">Médico Principal</ion-option>
+          <ion-option value="Auxiliar 1">Auxiliar 1</ion-option>
+          <ion-option value="Auxiliar 2">Auxiliar 2</ion-option>
+          <ion-option value="Auxiliar 3">Auxiliar 3</ion-option>
+          <ion-option value="Auxiliar 4">Auxiliar 4</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-item-group>
+        <button ion-button full color="light" (click)="presentTussModal()" >TUSS&nbsp;&nbsp;<ion-icon name="md-create"> </ion-icon></button>
+        
+        <ion-list>
+          <ion-item-sliding *ngFor="let itemTuss of model.tussLista">       
+            <button ion-item>
+              {{ itemTuss.id }}: {{ itemTuss.descricao }} 
+              <ion-icon [color]="itemTuss.favorito ? 'bright':'light'" [name]="itemTuss.favorito?'md-star':'md-star-outline'" item-start></ion-icon>
+            </button>
+            <ion-item-options side="right">
+              <button ion-button color="light" (click)="removeItemTuss(itemTuss)">
+                <ion-icon name="trash"></ion-icon>
+                Excluir
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+    </ion-item-group>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Recebido:</ion-label>
+      <ion-toggle [(ngModel)]="model.recebido"></ion-toggle>{{ model.recebido? 'sim':'não' }}
+    </ion-item>
+    <!-- ion-item>
+        <ion-item-group>
+          <button ion-button full color="light" (click)="presentEquipeModal()" item-end>Equipe&nbsp;&nbsp;<ion-icon name="md-create"></ion-icon></button>
+          <ion-list>
+            <ion-item-sliding *ngFor="let membro of model.equipe">       
+              <button ion-item>
+                {{ membro.nome }} 
+                <ion-icon [color]="membro.favorito ? 'bright':'light'" [name]="membro.favorito ? 'md-star':'md-star-outline'" item-start></ion-icon>
+              </button>
+              <ion-item-options side="right">
+                <button ion-button color="light" (click)="removeMembroEquipe(membro)">
+                  <ion-icon name="trash"></ion-icon>
+                  Excluir
+                </button>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+      </ion-item-group>
+    </ion-item -->    
+    <!-- ion-item>
+      <ion-label stacked>Descricao</ion-label>
+      <ion-input type="text" name="descricao" [(ngModel)]="model.descricao"></ion-input>
+    </ion-item-->
+       
+  </ion-list>
+    
+   <button ion-button block (click)="save()">Salvar</button>
+</ion-content>
